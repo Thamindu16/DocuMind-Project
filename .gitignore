@@ -1,0 +1,10 @@
+# Virtual Environment
+venv/
+__pycache__/
+*.pyc
+
+# Environment Variables (DO NOT UPLOAD API KEYS)
+.env
+
+# Database Files
+data/chroma_db/
