@@ -1,6 +1,5 @@
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings # Updated import
 from langchain_chroma import Chroma
-
 from src.config import CHROMA_DB_DIR, EMBEDDING_MODEL_NAME
 
 def get_retriever():

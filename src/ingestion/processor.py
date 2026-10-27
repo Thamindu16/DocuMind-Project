@@ -1,7 +1,8 @@
 import os
+import shutil
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings # Updated import
 from langchain_chroma import Chroma
 
 from src.config import DOCS_DIR, CHROMA_DB_DIR, EMBEDDING_MODEL_NAME, CHUNK_SIZE, CHUNK_OVERLAP
@@ -33,7 +34,6 @@ def ingest_documents():
 
     # Delete existing database to prevent duplicate data during testing
     if os.path.exists(CHROMA_DB_DIR):
-        import shutil
         shutil.rmtree(CHROMA_DB_DIR)
 
     # Create new vector database and store the chunks
@@ -43,7 +43,7 @@ def ingest_documents():
         persist_directory=CHROMA_DB_DIR
     )
     
-    print("Ingestion complete! Data is safely stored in ChromaDB.")
+    print("✅ Ingestion complete! Data is safely stored in ChromaDB.")
 
 if __name__ == "__main__":
     ingest_documents()

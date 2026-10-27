@@ -17,3 +17,6 @@ ragas
 datasets
 pytest
 tiktoken
+langchain-groq
+ddgs
+langchain-huggingface
