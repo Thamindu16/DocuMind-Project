@@ -14,9 +14,9 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Model Configurations
-# We will use Groq's Llama 3 model for fast and free generation
-LLM_MODEL_NAME = "llama-3.1-70b-versatile" 
-EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2" # Free local embedding model
+# Updated to a currently supported Groq model
+LLM_MODEL_NAME = "openai/gpt-oss-120b" 
+EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2" 
 
 # Data Processing Settings
 CHUNK_SIZE = 500
