@@ -1,0 +1,7 @@
+TechNova Solutions IT Security Policy
+
+Passwords: Passwords must be at least 12 characters long and changed every 90 days. Sharing passwords with anyone is strictly prohibited.
+
+VPN: Employees must connect to the company VPN when accessing internal systems from outside the office.
+
+Lost Devices: A lost or stolen laptop must be reported to the IT helpdesk within 24 hours.
