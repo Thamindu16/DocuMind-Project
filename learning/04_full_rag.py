@@ -15,8 +15,8 @@ SYSTEM_PROMPT = (
     "You are a company knowledge assistant. "
     "Answer the question using ONLY the context provided. "
     "If the answer is not in the context, reply exactly: I don't know based on the available documents. "
-    "Keep the answer short and mention the source file name."
-    "Do not mention sources when you answer I don’t know"
+    "Keep the answer short and mention the source file name. "
+    "Do not mention any source when you reply that you don't know."
 )
 
 
@@ -50,9 +50,8 @@ def answer(question):
 
 questions = [
     "How many days of annual leave do I get?",
-    "What is the maximum number of leave days I can carry over?",
-    "How often must I change my password?",
     "Who is the CEO of TechNova?",
+    "What is the capital of France?",
 ]
 
 for question in questions:
