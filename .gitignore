@@ -5,5 +5,4 @@ __pycache__/
 data/vectorstore/
 .pytest_cache/
 .files/
-.chainlit/
-chainlit.md
+.chainlit/translations/
