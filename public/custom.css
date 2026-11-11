@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+body,
+button,
+input,
+textarea {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Hide the default framework watermark */
+.watermark {
+    display: none !important;
+}
