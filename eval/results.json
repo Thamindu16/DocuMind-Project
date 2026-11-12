@@ -1,0 +1,159 @@
+{
+  "summary": {
+    "answerable_questions": 15,
+    "unanswerable_questions": 5,
+    "retrieval_hit@1_%": 100.0,
+    "retrieval_hit@3_%": 100.0,
+    "pipeline_answer_accuracy_%": 100.0,
+    "agent_answer_accuracy_%": 100.0,
+    "pipeline_refusal_rate_%": 100.0,
+    "agent_refusal_rate_%": 100.0
+  },
+  "details": [
+    {
+      "question": "How many days of annual leave do I get?",
+      "pipeline": "You get 14 days of annual leave per year.",
+      "agent": "You are entitled to 14 days of paid annual leave per year.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How many days in advance must I request leave?",
+      "pipeline": "You must request leave at least\u202f3\u202fworking days in advance.",
+      "agent": "Leave must be requested at least **3 working days** in advance.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How many unused leave days can I carry over to next year?",
+      "pipeline": "You can carry over up to\u202f5\u202funused leave days to the next year.",
+      "agent": "You can carry over up to\u202f5\u202funused leave days to the next year.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How many days per week can I work remotely?",
+      "pipeline": "You can work remotely up to\u202f2\u202fdays per week.",
+      "agent": "Employees may work remotely up to **2 days per week** with manager approval.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What are the core working hours?",
+      "pipeline": "The core working hours are 10\u202fAM\u202fto\u202f4\u202fPM.",
+      "agent": "Core working hours are 10\u202fAM to 4\u202fPM.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How many days of paid sick leave do I get per year?",
+      "pipeline": "You get 7 days of paid sick leave per year.",
+      "agent": "Employees receive **7 days of paid sick leave per year**.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "When do I need a medical certificate?",
+      "pipeline": "A medical certificate is required for absences longer than\u202f2\u202fconsecutive days.",
+      "agent": "A medical certificate is required for absences longer than\u202f2\u202fconsecutive days.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "Within how many days must expense claims be submitted?",
+      "pipeline": "Within 30 days.",
+      "agent": "Expense claims must be submitted within **30 days** of the expense.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "Which expense claims need director approval?",
+      "pipeline": "Expense claims exceeding\u202f50,000\u202fLKR require director approval.",
+      "agent": "Expense claims exceeding\u202f50,000\u202fLKR require director approval.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What is the minimum password length?",
+      "pipeline": "12 characters.",
+      "agent": "Passwords must be at least 12 characters long.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How often must I change my password?",
+      "pipeline": "Every 90 days.",
+      "agent": "Passwords must be changed every\u202f90\u202fdays.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "When must I connect to the VPN?",
+      "pipeline": "You must connect to the VPN whenever you access internal systems from outside the office.",
+      "agent": "Employees must connect to the company VPN whenever they are accessing internal systems from outside the office.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "Within how long must a lost laptop be reported?",
+      "pipeline": "Within 24\u202fhours.",
+      "agent": "A lost laptop must be reported to the IT helpdesk within **24\u202fhours**.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "Who do I report a lost laptop to?",
+      "pipeline": "Report it to the IT helpdesk.",
+      "agent": "A lost laptop must be reported to the IT helpdesk within\u202f24\u202fhours.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What do I need to attach to an expense claim?",
+      "pipeline": "You need to attach the original receipts.",
+      "agent": "You need to attach the original receipts for the expenses.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What is the capital of France?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents."
+    },
+    {
+      "question": "Who is the CEO of TechNova?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents."
+    },
+    {
+      "question": "What is the monthly salary of a software engineer?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents."
+    },
+    {
+      "question": "What is the office dress code?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents."
+    },
+    {
+      "question": "What time does the cafeteria open?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents."
+    }
+  ]
+}

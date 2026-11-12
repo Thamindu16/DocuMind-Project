@@ -1,0 +1,137 @@
+[
+    {
+        "question": "How many days of annual leave do I get?",
+        "keywords": [
+            "14"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How many days in advance must I request leave?",
+        "keywords": [
+            "3"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How many unused leave days can I carry over to next year?",
+        "keywords": [
+            "5"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How many days per week can I work remotely?",
+        "keywords": [
+            "2 days",
+            "two days"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What are the core working hours?",
+        "keywords": [
+            "10 am",
+            "10:00",
+            "10 a.m"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How many days of paid sick leave do I get per year?",
+        "keywords": [
+            "7"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "When do I need a medical certificate?",
+        "keywords": [
+            "2 consecutive",
+            "two consecutive"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "Within how many days must expense claims be submitted?",
+        "keywords": [
+            "30"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "Which expense claims need director approval?",
+        "keywords": [
+            "50,000"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What is the minimum password length?",
+        "keywords": [
+            "12"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How often must I change my password?",
+        "keywords": [
+            "90"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "When must I connect to the VPN?",
+        "keywords": [
+            "outside"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "Within how long must a lost laptop be reported?",
+        "keywords": [
+            "24"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "Who do I report a lost laptop to?",
+        "keywords": [
+            "helpdesk",
+            "help desk"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What do I need to attach to an expense claim?",
+        "keywords": [
+            "receipt"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What is the capital of France?",
+        "keywords": [],
+        "answerable": false
+    },
+    {
+        "question": "Who is the CEO of TechNova?",
+        "keywords": [],
+        "answerable": false
+    },
+    {
+        "question": "What is the monthly salary of a software engineer?",
+        "keywords": [],
+        "answerable": false
+    },
+    {
+        "question": "What is the office dress code?",
+        "keywords": [],
+        "answerable": false
+    },
+    {
+        "question": "What time does the cafeteria open?",
+        "keywords": [],
+        "answerable": false
+    }
+]
