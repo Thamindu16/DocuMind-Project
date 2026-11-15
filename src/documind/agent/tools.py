@@ -1,6 +1,7 @@
 import ast
 import operator
 
+from src.documind.ingestion.indexer import list_documents
 from src.documind.retrieval.retriever import retrieve
 
 # Only these arithmetic operations are allowed
@@ -38,16 +39,24 @@ def search_documents(query):
     return "\n\n".join(f"[{c['source']}] {c['text']}" for c in chunks)
 
 
+def list_indexed_documents():
+    """List the documents the assistant can search."""
+    documents = list_documents()
+    if not documents:
+        return "No documents are indexed yet."
+    return "\n".join(f"- {d['source']} ({d['chunks']} passages)" for d in documents)
+
+
 # Tool descriptions the LLM reads to decide when to use each tool
 TOOL_SCHEMAS = [
     {
         "type": "function",
         "function": {
             "name": "search_documents",
-            "description": "Search company HR and IT policy documents. Use for any question about company rules.",
+            "description": "Search the company documents, including policies and any files the user uploaded. Use for any question about their content.",
             "parameters": {
                 "type": "object",
-                "properties": {"query": {"type": "string", "description": "What to look for"}},
+                "properties": {"query": {"type": "string", "description": "A short English search query"}},
                 "required": ["query"],
             },
         },
@@ -64,6 +73,18 @@ TOOL_SCHEMAS = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "list_indexed_documents",
+            "description": "List the documents available to search. Use when the user asks what you can help with or which documents you know.",
+            "parameters": {"type": "object", "properties": {}},
+        },
+    },
 ]
 
-TOOL_FUNCTIONS = {"search_documents": search_documents, "calculate": calculate}
+TOOL_FUNCTIONS = {
+    "search_documents": search_documents,
+    "calculate": calculate,
+    "list_indexed_documents": list_indexed_documents,
+}
