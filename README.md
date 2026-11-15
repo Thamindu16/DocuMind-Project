@@ -1,46 +1,50 @@
 # DocuMind
 
-A question-answering assistant for company documents. You ask a question in plain English, DocuMind finds the relevant passages in the HR and IT policy files, and a language model answers using only those passages. Every answer shows which file it came from. If the documents don't contain the answer, it says so instead of guessing.
+A conversational assistant for company documents. You chat with it in English or Sinhala, it finds the relevant passages in the documents, and a language model answers using only those passages. Every answer shows which file it came from. If the documents don't contain the answer, it says so instead of guessing. You can also upload your own PDF or text files and ask questions about them.
 
 I built this to learn retrieval-augmented generation (RAG) end to end: embeddings, a vector database, grounding, tool-calling agents, evaluation and testing.
+
+![DocuMind answering a question](docs/screenshots/chat.png)
 
 ## How it works
 
 ```mermaid
 flowchart LR
     U[User] --> UI[Chainlit chat UI]
-    UI -->|POST /ask| API[FastAPI backend]
-    API --> R[RAG pipeline]
-    R --> E[Embed question]
-    E --> V[(ChromaDB)]
-    V -->|top 3 chunks| L[LLM via Groq]
-    L --> API
-    D[Documents .txt] -->|paragraph chunking and embedding| V
+    UI -->|POST /chat with history and mode| API[FastAPI backend]
+    UI -->|POST /upload| API
+    API --> A[Agent]
+    A -->|search_documents| V[(ChromaDB)]
+    A -->|calculate| C[Safe calculator]
+    A -->|list_indexed_documents| V
+    A --> L[LLM via Groq]
+    D[Documents in data/raw] -->|chunk, embed, store| V
+    API -->|chunk, embed, store uploads| V
 ```
 
 1. Documents are split into paragraph-sized chunks, converted to vectors with `all-MiniLM-L6-v2` and stored in ChromaDB.
-2. A question is embedded the same way, and the three closest chunks are retrieved.
-3. Those chunks go to the language model with an instruction to answer only from them, or say it doesn't know.
+2. The agent reads the user message and the recent conversation. For greetings and thanks it simply replies. For questions about the company it searches the documents and answers only from what it finds.
+3. For arithmetic it calls a safe calculator, so "if I use 9 of my annual leave days, how many are left?" combines a document lookup with a calculation.
+4. If the documents do not contain the answer, it says so.
 
-There is also a tool-calling agent (`src/documind/agent`) that can search the documents and do arithmetic, for questions like "if I use 9 of my annual leave days, how many do I have left?".
+A plain RAG pipeline without tools or memory is also exposed at `POST /ask`, and it is what the evaluation compares the agent against.
 
-## Project structure
+## Two answer modes
 
-```text
-src/documind/
-  config.py        settings
-  embeddings/      text to vectors
-  ingestion/       chunking and indexing
-  retrieval/       finding relevant chunks
-  llm/             Groq client
-  rag/             prompt and RAG pipeline
-  agent/           tools and the agent loop
-  api/             FastAPI app
-app/               Chainlit chat UI
-eval/              test questions and evaluation script
-tests/             pytest unit tests
-learning/          small experiments, one per concept
-```
+The chat has a switch (the settings icon next to the message box):
+
+- **Answer general questions too** (on by default): questions about the company or an uploaded file are answered only from the documents. Other questions, such as "what is RAG?", are answered from the model's own knowledge and end with a note saying so.
+- **Off:** DocuMind answers only from the documents and says "I don't know" otherwise. The evaluation runs in this mode.
+
+Company facts are never guessed. If the documents don't contain them, the assistant says so in both modes.
+
+## What you can ask
+
+The sample company documents cover HR policy, IT security, benefits, the code of conduct, onboarding and customer support. Try greeting it, asking about leave or insurance, asking a follow-up such as "and for sick leave?", asking in Sinhala, or asking what it can help with.
+
+## Using your own documents
+
+Click the paperclip in the chat, attach a PDF or `.txt` file (up to 10 MB), wait for the "ready" message, then ask a question. Uploaded files are stored in `data/uploads/` and kept in the index. Scanned PDFs (images of text) are not supported because there is no OCR.
 
 ## Run it
 
@@ -52,7 +56,15 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Copy `.env.example` to `.env` and put your key in it. Then:
+Copy `.env.example` to `.env` and put your key in it. Then start everything with one command:
+
+```bash
+python start.py
+```
+
+The first run builds the search index, then your browser opens the chat. The script picks free ports automatically and prints the addresses (usually `http://localhost:8001` for the chat and `http://127.0.0.1:8000/docs` for the API documentation). These addresses only work on the computer where the app is running, which is why they are not clickable links here.
+
+To run the parts separately instead:
 
 ```bash
 python -m src.documind.ingestion.indexer        # build the vector index
@@ -60,42 +72,43 @@ uvicorn src.documind.api.main:app --reload       # terminal 1: backend
 chainlit run app/chat.py --port 8001             # terminal 2: chat UI
 ```
 
-Open http://localhost:8001. API docs are at http://127.0.0.1:8000/docs.
+## Project structure
+
+```text
+src/documind/
+  config.py        settings
+  embeddings/      text to vectors
+  ingestion/       loading PDF and text files, chunking, indexing
+  retrieval/       finding relevant chunks
+  llm/             Groq client
+  rag/             prompt and plain RAG pipeline
+  agent/           tools, prompts and the agent loop
+  api/             FastAPI app
+app/               Chainlit chat UI
+data/raw/          sample company documents
+eval/              test questions and evaluation script
+tests/             pytest unit tests
+learning/          small experiments, one per concept
+public/            logo and UI theme
+scripts/           logo generator
+start.py           starts the API and the UI together
+```
 
 ## Evaluation
 
-`eval/evaluate.py` runs 20 test questions (15 answerable, 5 not covered by the documents) through both the RAG pipeline and the agent.
+`eval/evaluate.py` runs a set of test questions through both the plain RAG pipeline and the agent (documents-only mode) and reports retrieval accuracy, answer accuracy and how often out-of-scope questions are refused. The question sets live in `eval/`:
 
-| Metric | Result |
-|---|---|
-| Retrieval hit@1 / hit@3 | 100% / 100% |
-| Answer accuracy, RAG pipeline | 100% |
-| Answer accuracy, agent | 100% |
-| Refusal of out-of-scope questions | 100% |
-
-These numbers come from a small test set and only two short documents, so they show the system works, not that it is production-ready. Two things I found along the way:
-
-- Splitting every 300 characters mixed several policies into one chunk and pushed the right chunk down to rank 2. Splitting by paragraph fixed it.
-- The first evaluation reported 80% because the model sometimes returns non-breaking spaces and my keyword check didn't handle them. The answers were correct, so I fixed the checker.
-
-## Tests
+- `test_set.json`: 20 questions about the HR and IT documents (15 answerable, 5 out of scope)
+- `test_set_new.json`: questions about the benefits, onboarding and support documents
+- `test_set_hard.json`: reworded, misspelled, Sinhala and out-of-scope questions, including a prompt-injection attempt
 
 ```bash
-python -m pytest -v
+python -m eval.evaluate                      # default set
+python -m eval.evaluate test_set_hard.json   # any other set
 ```
 
-12 unit tests cover the calculator (including rejecting arbitrary code), the chunking and the API.
-
-## Limitations
-
-- Only `.txt` files in `data/raw/` are indexed, and there is no upload from the UI yet.
-- The chat has no memory, so each question is answered on its own.
-- Evaluation uses keyword matching on a small question set. A larger set and an LLM-based judge would be the next step.
-
-## Built with
-
-Python, sentence-transformers, ChromaDB, Groq, FastAPI, Chainlit, pytest.
+| Test set | Retrieval hit@1 | RAG pipeline accuracy | Agent accuracy | Refusal of out-of-scope
 
 ## Author
 
-Thamindu Kavinda Dinujaya | Undergraduate Data Science Student
+Thamindu Kavinda | Undergraduate data science student
