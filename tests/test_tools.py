@@ -1,4 +1,4 @@
-from src.documind.agent.tools import calculate
+from src.documind.agent.tools import calculate, list_indexed_documents
 
 
 def test_addition():
@@ -21,3 +21,11 @@ def test_rejects_python_code():
 
 def test_division_by_zero_is_handled():
     assert calculate("1 / 0").startswith("Calculation error")
+
+
+def test_list_documents_tool_formats_files(monkeypatch):
+    monkeypatch.setattr(
+        "src.documind.agent.tools.list_documents",
+        lambda: [{"source": "hr_policy.txt", "chunks": 4}],
+    )
+    assert "hr_policy.txt (4 passages)" in list_indexed_documents()
