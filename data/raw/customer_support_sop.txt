@@ -1,0 +1,9 @@
+TechNova Customer Support Procedure
+
+Response Times: Support tickets must receive a first response within 4 working hours. Tickets marked as critical must be answered within 1 hour.
+
+Escalation: A ticket that is not resolved within 2 working days is escalated to the team lead. If the customer is still unhappy after the team lead's review, it goes to the support manager.
+
+Refunds: Support agents can approve refunds up to 20,000 LKR. Larger refunds need the support manager's approval.
+
+Closing Tickets: A ticket can be closed only after the customer confirms the problem is solved, or after the customer does not reply to two follow-up messages.
