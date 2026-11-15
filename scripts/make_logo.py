@@ -1,58 +1,102 @@
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 PUBLIC = Path("public")
 AVATARS = PUBLIC / "avatars"
 AVATARS.mkdir(parents=True, exist_ok=True)
 
-FONT_PATHS = ["C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arialbd.ttf"]
-ACCENT = (37, 99, 235, 255)
-WHITE = (255, 255, 255, 255)
+WORD = "documind"
+FONT_PATHS = [
+    "C:/Windows/Fonts/segoeuib.ttf",  # Segoe UI Bold
+    "C:/Windows/Fonts/arialbd.ttf",   # Arial Bold
+    "C:/Windows/Fonts/seguibl.ttf",   # Segoe UI Black (very heavy, melts too much)
+]
+FONT_SIZE = 360       # draw big, shrink at the end for smooth edges
+OVERLAP = 0.035       # how far neighbouring letters overlap (fraction of font size)
+GOO = 0.02          # blur radius that melts touching letters together (lower = less melting)
+THRESHOLD = 128       # 0-255, higher keeps the holes inside o, d and a open
+LEFT, RIGHT = (99, 102, 241), (168, 85, 247)   # indigo to purple, readable on dark and light themes
 
 
 def load_font(size):
-    """Use a bold Windows font, falling back to the default font."""
     for path in FONT_PATHS:
         try:
             return ImageFont.truetype(path, size)
         except OSError:
             continue
-    return ImageFont.load_default()
+    raise SystemExit("No bold font found. Edit FONT_PATHS at the top of scripts/make_logo.py.")
 
 
-def make_logo(filename):
-    """Draw 'DocuMind' as white text on a blue rounded pill, readable on any background."""
-    font = load_font(96)
-    probe = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
-    box = probe.textbbox((0, 0), "DocuMind", font=font)
-    text_w, text_h = box[2] - box[0], box[3] - box[1]
+def fused_mask(text, size):
+    """Draw overlapping letters, then blur and threshold so touching letters melt into one shape."""
+    font = load_font(size)
+    pad = int(size * 0.4)
+    advances = [font.getlength(ch) for ch in text]
+    step_back = OVERLAP * size
+    width = int(sum(advances) - step_back * (len(text) - 1)) + 2 * pad
+    height = int(size * 1.6) + 2 * pad
 
-    pad_x, pad_y = 56, 36
-    image = Image.new("RGBA", (text_w + 2 * pad_x, text_h + 2 * pad_y), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(image)
-    draw.rounded_rectangle((0, 0, image.width - 1, image.height - 1), radius=44, fill=ACCENT)
-    draw.text((pad_x - box[0], pad_y - box[1]), "DocuMind", font=font, fill=WHITE)
-    image.save(PUBLIC / filename)
+    mask = Image.new("L", (width, height), 0)
+    draw = ImageDraw.Draw(mask)
+    x = pad
+    for char, advance in zip(text, advances):
+        draw.text((x, pad), char, font=font, fill=255)
+        x += advance - step_back
 
-
-def make_icon(path):
-    """Draw a blue rounded square with a white 'D' for the favicon and chat avatar."""
-    image = Image.new("RGBA", (128, 128), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(image)
-    draw.rounded_rectangle((0, 0, 127, 127), radius=28, fill=ACCENT)
-
-    font = load_font(84)
-    box = draw.textbbox((0, 0), "D", font=font)
-    x = (128 - (box[2] - box[0])) / 2 - box[0]
-    y = (128 - (box[3] - box[1])) / 2 - box[1]
-    draw.text((x, y), "D", font=font, fill=WHITE)
-    image.save(path)
+    blurred = mask.filter(ImageFilter.GaussianBlur(GOO * size))
+    fused = blurred.point(lambda value: 255 if value > THRESHOLD else 0)
+    return fused.crop(fused.getbbox())
 
 
-# The same logo is used for both themes
-make_logo("logo_dark.png")
-make_logo("logo_light.png")
-make_icon(PUBLIC / "favicon.png")
-make_icon(AVATARS / "documind.png")
+def gradient(size, left, right):
+    """Horizontal colour gradient image."""
+    width, height = size
+    row = Image.new("RGB", (width, 1))
+    for x in range(width):
+        t = x / max(width - 1, 1)
+        row.putpixel((x, 0), tuple(int(left[i] + (right[i] - left[i]) * t) for i in range(3)))
+    return row.resize((width, height), Image.NEAREST)
+
+
+def make_logo(filename, left, right=None):
+    """Save the fused wordmark on a transparent background."""
+    mask = fused_mask(WORD, FONT_SIZE)
+    margin = int(FONT_SIZE * 0.2)
+    canvas = Image.new("L", (mask.width + 2 * margin, mask.height + 2 * margin), 0)
+    canvas.paste(mask, (margin, margin))
+
+    logo = gradient(canvas.size, left, right or left).convert("RGBA")
+    logo.putalpha(canvas)
+    final_width = 900
+    logo = logo.resize((final_width, int(logo.height * final_width / logo.width)), Image.LANCZOS)
+    logo.save(PUBLIC / filename)
+
+
+def make_icon(path, pixels):
+    """Rounded gradient square with a fused white 'd', used for the favicon and the chat avatar."""
+    size = 1024
+    icon = gradient((size, size), LEFT, RIGHT).convert("RGBA")
+    corners = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(corners).rounded_rectangle((0, 0, size - 1, size - 1), radius=int(size * 0.23), fill=255)
+    icon.putalpha(corners)
+
+    letter = fused_mask("d", FONT_SIZE)
+    target = int(size * 0.6)
+    letter = letter.resize((int(letter.width * target / letter.height), target), Image.LANCZOS)
+    layer = Image.new("RGBA", letter.size, (255, 255, 255, 255))
+    layer.putalpha(letter)
+    overlay = Image.new("RGBA", icon.size, (0, 0, 0, 0))
+    overlay.paste(layer, ((size - letter.width) // 2, (size - letter.height) // 2))
+    icon = Image.alpha_composite(icon, overlay)
+    icon.resize((pixels, pixels), Image.LANCZOS).save(path)
+
+
+make_logo("logo.png", LEFT, RIGHT)          # used by the chat UI on both themes
+make_logo("logo_dark.png", LEFT, RIGHT)
+make_logo("logo_light.png", LEFT, RIGHT)
+make_logo("logo_black.png", (17, 24, 39))   # plain versions for documents and slides
+make_logo("logo_white.png", (255, 255, 255))
+make_icon(PUBLIC / "favicon.png", 64)
+make_icon(AVATARS / "documind.png", 128)
 print("Logo files created in public/")
