@@ -1,6 +1,7 @@
 import contextlib
 import io
 import json
+import sys
 import time
 from pathlib import Path
 
@@ -10,6 +11,8 @@ from src.documind.retrieval.retriever import retrieve
 
 EVAL_DIR = Path(__file__).resolve().parent
 REFUSAL = "i don't know"
+# Test set file name can be passed as an argument: python -m eval.evaluate test_set_hard.json
+TEST_SET = sys.argv[1] if len(sys.argv) > 1 else "test_set.json"
 
 
 def normalize(text):
@@ -37,7 +40,7 @@ def percent(count, total):
     return round(100 * count / total, 1) if total else 0.0
 
 
-cases = json.loads((EVAL_DIR / "test_set.json").read_text(encoding="utf-8"))
+cases = json.loads((EVAL_DIR / TEST_SET).read_text(encoding="utf-8"))
 answerable = [c for c in cases if c["answerable"]]
 unanswerable = [c for c in cases if not c["answerable"]]
 
@@ -64,14 +67,18 @@ for case in cases:
         stats["agent_ok"] += agent_correct
         record.update(rank=rank, pipeline_correct=pipeline_correct, agent_correct=agent_correct)
     else:
-        stats["pipeline_refused"] += REFUSAL in normalize(pipeline_reply)
-        stats["agent_refused"] += REFUSAL in normalize(agent_reply)
+        pipeline_refused = REFUSAL in normalize(pipeline_reply)
+        agent_refused = REFUSAL in normalize(agent_reply)
+        stats["pipeline_refused"] += pipeline_refused
+        stats["agent_refused"] += agent_refused
+        record.update(pipeline_refused=pipeline_refused, agent_refused=agent_refused)
 
     details.append(record)
     time.sleep(2)  # stay under the API rate limit
 
 n, m = len(answerable), len(unanswerable)
 summary = {
+    "test_set": TEST_SET,
     "answerable_questions": n,
     "unanswerable_questions": m,
     "retrieval_hit@1_%": percent(stats["hit1"], n),
@@ -88,10 +95,15 @@ for key, value in summary.items():
 
 print("\n=== Failures ===")
 for record in details:
-    if record.get("pipeline_correct") is False or record.get("agent_correct") is False:
+    failed = (
+        record.get("pipeline_correct") is False
+        or record.get("agent_correct") is False
+        or record.get("pipeline_refused") is False
+        or record.get("agent_refused") is False
+    )
+    if failed:
         print(f"\nQ: {record['question']}\n  pipeline: {record['pipeline']}\n  agent: {record['agent']}")
 
-(EVAL_DIR / "results.json").write_text(
-    json.dumps({"summary": summary, "details": details}, indent=2), encoding="utf-8"
-)
-print("\nSaved eval/results.json")
+results_file = EVAL_DIR / f"results_{Path(TEST_SET).stem}.json"
+results_file.write_text(json.dumps({"summary": summary, "details": details}, indent=2), encoding="utf-8")
+print(f"\nSaved {results_file.name}")

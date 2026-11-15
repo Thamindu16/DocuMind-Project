@@ -1,0 +1,65 @@
+[
+    {
+        "question": "How much is the annual training budget?",
+        "keywords": [
+            "100,000"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How often are performance reviews held?",
+        "keywords": [
+            "twice"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What is the hospital cover limit of the health insurance?",
+        "keywords": [
+            "500,000"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How long is the probation period?",
+        "keywords": [
+            "six months",
+            "6 months"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What is the first response time for a support ticket?",
+        "keywords": [
+            "4 working hours",
+            "4 hours"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "Who approves refunds above 20,000 LKR?",
+        "keywords": [
+            "support manager"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "Can I accept a gift from a supplier?",
+        "keywords": [
+            "10,000"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "How much is the home office allowance?",
+        "keywords": [
+            "40,000"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "What is the company stock option plan?",
+        "keywords": [],
+        "answerable": false
+    }
+]
