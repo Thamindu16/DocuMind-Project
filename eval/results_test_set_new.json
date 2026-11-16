@@ -1,0 +1,86 @@
+{
+  "summary": {
+    "test_set": "test_set_new.json",
+    "answerable_questions": 8,
+    "unanswerable_questions": 1,
+    "retrieval_hit@1_%": 87.5,
+    "retrieval_hit@3_%": 87.5,
+    "pipeline_answer_accuracy_%": 87.5,
+    "agent_answer_accuracy_%": 87.5,
+    "pipeline_refusal_rate_%": 100.0,
+    "agent_refusal_rate_%": 100.0
+  },
+  "details": [
+    {
+      "question": "How much is the annual training budget?",
+      "pipeline": "The annual training budget is 100,000\u202fLKR per employee.",
+      "agent": "The annual training budget is\u202f100,000\u202fLKR per employee.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How often are performance reviews held?",
+      "pipeline": "Performance reviews are held twice a year, in June and December.",
+      "agent": "Performance reviews are held twice a year, in June and December.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What is the hospital cover limit of the health insurance?",
+      "pipeline": "The health insurance covers hospital stays up to 500,000\u202fLKR per year.",
+      "agent": "The health insurance covers hospital stays up to **500,000\u202fLKR per year**. Let me know if you need any other details from the company documents.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "How long is the probation period?",
+      "pipeline": "The probation period is six months.",
+      "agent": "The probation period is six months. If you need more details from the company documents, feel free to ask!",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What is the first response time for a support ticket?",
+      "pipeline": "Support tickets must receive a first response within\u202f4\u202fworking hours.",
+      "agent": "The first response time for a support ticket is within\u202f4\u202fworking hours (critical tickets must be answered within\u202f1\u202fhour).",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "Who approves refunds above 20,000 LKR?",
+      "pipeline": "The support manager approves refunds above\u202f20,000\u202fLKR.",
+      "agent": "Refunds above\u202f20,000\u202fLKR require approval from the support manager.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "Can I accept a gift from a supplier?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents. Let me know if you have any other questions about the company policies or procedures.",
+      "rank": null,
+      "pipeline_correct": false,
+      "agent_correct": false
+    },
+    {
+      "question": "How much is the home office allowance?",
+      "pipeline": "The home office allowance is 40,000\u202fLKR.",
+      "agent": "The home office allowance is a one\u2011time payment of **40,000\u202fLKR** for a desk, chair or monitor. I can also help with other questions about company documents.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "What is the company stock option plan?",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents. Let me know if you have any other questions about the company documents!",
+      "pipeline_refused": true,
+      "agent_refused": true
+    }
+  ]
+}
