@@ -1,0 +1,50 @@
+[
+    {
+        "question": "remote wada karanna puluwan sathiyakata dawas kiyak da",
+        "keywords": [
+            "2 dina",
+            "2 dawas",
+            "2 days",
+            "dina 2",
+            "dawas 2"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "password eka kochchara kalayakata parak wenas karanna oni",
+        "keywords": [
+            "90"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "health insurance eken hospital ekata kochchara denawada",
+        "keywords": [
+            "500,000"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "laptop eka horu unoth mokakda karanna ona",
+        "keywords": [
+            "24",
+            "helpdesk"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "probation eka kochchara kalayakda",
+        "keywords": [
+            "six",
+            "6 masa",
+            "masa 6",
+            "6 months"
+        ],
+        "answerable": true
+    },
+    {
+        "question": "company eke CEO kauda",
+        "keywords": [],
+        "answerable": false
+    }
+]
