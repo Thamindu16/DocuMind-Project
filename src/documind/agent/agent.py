@@ -78,8 +78,17 @@ def _clean_history(history):
     return turns[-MAX_HISTORY:]
 
 
+def _main_source(search_result):
+    """Return the file name of the closest passage in a search result, or None.
+
+    Passages are returned as '[file name] text', closest match first.
+    """
+    found = re.findall(r"^\[([^\]]+)\]", search_result, flags=re.MULTILINE)
+    return found[0] if found else None
+
+
 def run_agent_detailed(question, history=None, general_knowledge=False):
-    """Let the LLM call tools in a loop. Returns the answer and the source files it consulted."""
+    """Let the LLM call tools in a loop. Returns the answer and the source file it relied on most."""
     messages = [{"role": "system", "content": get_prompt(general_knowledge)}]
     messages += _clean_history(history)
     messages.append({"role": "user", "content": question})
@@ -119,8 +128,10 @@ def run_agent_detailed(question, history=None, general_knowledge=False):
             except Exception as error:
                 result = f"Tool error: {error}"
             if call.function.name == "search_documents":
-                # Passages are returned as "[file name] text", so collect the file names
-                sources += re.findall(r"^\[([^\]]+)\]", result, flags=re.MULTILINE)
+                # Only the closest passage counts as the source of the answer
+                main_source = _main_source(result)
+                if main_source:
+                    sources.append(main_source)
             messages.append({"role": "tool", "tool_call_id": call.id, "content": result})
 
     return {"answer": "I could not finish within the step limit.", "sources": []}
