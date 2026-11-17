@@ -3,10 +3,10 @@
     "test_set": "test_set_new.json",
     "answerable_questions": 8,
     "unanswerable_questions": 1,
-    "retrieval_hit@1_%": 87.5,
-    "retrieval_hit@3_%": 87.5,
-    "pipeline_answer_accuracy_%": 87.5,
-    "agent_answer_accuracy_%": 87.5,
+    "retrieval_hit@1_%": 100.0,
+    "retrieval_hit@3_%": 100.0,
+    "pipeline_answer_accuracy_%": 100.0,
+    "agent_answer_accuracy_%": 100.0,
     "pipeline_refusal_rate_%": 100.0,
     "agent_refusal_rate_%": 100.0
   },
@@ -14,7 +14,7 @@
     {
       "question": "How much is the annual training budget?",
       "pipeline": "The annual training budget is 100,000\u202fLKR per employee.",
-      "agent": "The annual training budget is 100,000\u202fLKR per employee.",
+      "agent": "The annual training budget is\u202f100,000\u202fLKR per employee. Let me know if you need details from any other company documents.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -29,8 +29,8 @@
     },
     {
       "question": "What is the hospital cover limit of the health insurance?",
-      "pipeline": "The health insurance covers hospital stays up to 500,000\u202fLKR per year.",
-      "agent": "The health insurance covers hospital stays up to **500,000\u202fLKR per year**. Let me know if you need any other details from the company documents.",
+      "pipeline": "The health insurance covers hospital stays up to\u202f500,000\u202fLKR per year.",
+      "agent": "The health insurance covers hospital stays up to\u202f500,000\u202fLKR per year. Let me know if you need any other details from the company documents.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -61,16 +61,16 @@
     },
     {
       "question": "Can I accept a gift from a supplier?",
-      "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. Let me know if you have any other questions about the company documents.",
-      "rank": null,
-      "pipeline_correct": false,
-      "agent_correct": false
+      "pipeline": "You may accept a non\u2011cash gift from a supplier only if its value is\u202f10,000\u202fLKR\u202for less; otherwise it must be declined or handed to HR (cash gifts are never allowed).",
+      "agent": "You may accept a non\u2011cash gift from a supplier only if its value is\u202f10,000\u202fLKR or less. Any gift above that amount must be declined or handed over to HR, and cash gifts are never allowed.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
     },
     {
       "question": "How much is the home office allowance?",
-      "pipeline": "The home office allowance is 40,000\u202fLKR.",
-      "agent": "Home office allowance is a one\u2011time payment of **40,000\u202fLKR** for a desk, chair or monitor, plus a **monthly internet allowance of 3,000\u202fLKR**.",
+      "pipeline": "40,000\u202fLKR.",
+      "agent": "Employees approved for remote work receive a one\u2011time home office allowance of **40,000\u202fLKR** for a desk, chair or monitor. (There is also a monthly internet allowance of 3,000\u202fLKR.)",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -78,7 +78,7 @@
     {
       "question": "What is the company stock option plan?",
       "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. Let me know if you have any other questions about the company documents!",
+      "agent": "I don't know based on the available documents. Let me know if you have any other questions about TechNova\u2019s documents!",
       "pipeline_refused": true,
       "agent_refused": true
     }

@@ -1,0 +1,62 @@
+{
+  "summary": {
+    "test_set": "test_set_singlish.json",
+    "answerable_questions": 5,
+    "unanswerable_questions": 1,
+    "retrieval_hit@1_%": 80.0,
+    "retrieval_hit@3_%": 100.0,
+    "pipeline_answer_accuracy_%": 80.0,
+    "agent_answer_accuracy_%": 80.0,
+    "pipeline_refusal_rate_%": 100.0,
+    "agent_refusal_rate_%": 100.0
+  },
+  "details": [
+    {
+      "question": "remote wada karanna puluwan sathiyakata dawas kiyak da",
+      "pipeline": "\u0d94\u0db6\u0da7 \u0dc3\u0dad\u0dd2\u0dba\u0d9a\u0da7 \u0d8b\u0db4\u0dbb\u0dd2\u0db8 \u0daf\u0dd2\u0db1 2\u0d9a\u0dca \u0daf\u0dd4\u0dbb\u0dc3\u0dca\u0dae\u0dc0 \u0dc0\u0dd0\u0da9 \u0d9a\u0dc5 \u0dc4\u0dd0\u0d9a.",
+      "agent": "Remote wada karanna puluwan sathiyakata 2 dawas per week thiyenawa (manager approval ekak thiyenawanam).",
+      "rank": 2,
+      "pipeline_correct": false,
+      "agent_correct": true
+    },
+    {
+      "question": "password eka kochchara kalayakata parak wenas karanna oni",
+      "pipeline": "Passwords must be changed every\u202f90\u202fdays.",
+      "agent": "password eka 90 dina (\u2248 3 maasa) ekak thiyenawa wenas karanna. TechNova policies balanna puluwan, ehema namuth thawa prasna thiyenawanam ahanna.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "health insurance eken hospital ekata kochchara denawada",
+      "pipeline": "Health insurance covers hospital stays up to 500,000\u202fLKR per year.",
+      "agent": "Health insurance eken hospital stay ekata per year 500,000\u202fLKR pariyanta coverage thiyenawa.\u202fMokak hari thawa company documents gena ahanna puluwan!",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "laptop eka horu unoth mokakda karanna ona",
+      "pipeline": "Lost laptop \u0d91\u0d9a\u0d9a\u0dca \u0dc4\u0ddd \u0dc3\u0ddc\u0dba\u0dcf\u0d9c\u0dad \u0db1\u0ddc\u0dc4\u0dd0\u0d9a\u0dd2 \u0dc0\u0dd4\u0dc0\u0dc4\u0ddc\u0dad\u0dca, 24\u202f\u0db4\u0dd0\u0dba \u0d87\u0dad\u0dd4\u0dc5\u0dad IT helpdesk \u0dc0\u0dd9\u0dad \u0dc0\u0dcf\u0dbb\u0dca\u0dad\u0dcf \u0d9a\u0dbb\u0db1\u0dca\u0db1.",
+      "agent": "I don't know based on the available documents. If you have other questions about company policies or procedures, feel free to ask!",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": false
+    },
+    {
+      "question": "probation eka kochchara kalayakda",
+      "pipeline": "Probation period is six months.",
+      "agent": "Probation period eka 6 months. \u0db8\u0da7 company documents \u0d9c\u0dd0\u0db1 \u0d95\u0db1\u0db8 \u0db4\u0dca\u200d\u0dbb\u0dc1\u0dca\u0db1 \u0dc0\u0dbd\u0da7 \u0d8b\u0daf\u0dc0\u0dca \u0d9a\u0dbb\u0db1\u0dca\u0db1 \u0db4\u0dd4\u0dc5\u0dd4\u0dc0\u0db1\u0dca.",
+      "rank": 1,
+      "pipeline_correct": true,
+      "agent_correct": true
+    },
+    {
+      "question": "company eke CEO kauda",
+      "pipeline": "I don't know based on the available documents.",
+      "agent": "I don't know based on the available documents. \u0dad\u0dc0\u0dad\u0dca \u0d95\u0db1\u0dd1\u0db8 \u0dc3\u0db8\u0dcf\u0d9c\u0db8\u0dda \u0dbd\u0dda\u0d9b\u0db1 \u0db4\u0dd2\u0dc5\u0dd2\u0db6\u0db3 \u0db4\u0dca\u200d\u0dbb\u0dc1\u0dca\u0db1 \u0dc0\u0dbd\u0da7 \u0db8\u0da7 \u0d8b\u0daf\u0dc0\u0dca \u0d9a\u0dbb\u0db1\u0dca\u0db1 \u0db4\u0dd4\u0dc5\u0dd4\u0dc0\u0db1\u0dca.",
+      "pipeline_refused": true,
+      "agent_refused": true
+    }
+  ]
+}

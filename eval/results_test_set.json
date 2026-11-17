@@ -14,7 +14,7 @@
     {
       "question": "How many days of annual leave do I get?",
       "pipeline": "You get 14 days of annual leave per year.",
-      "agent": "Hi! You\u2019re entitled to **14 days of paid annual leave per year**. Let me know if you need anything else from the company documents!",
+      "agent": "You get 14 days of paid annual leave per year. If you need more details, feel free to ask about any other company documents.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -22,7 +22,7 @@
     {
       "question": "How many days in advance must I request leave?",
       "pipeline": "You must request leave at least\u202f3\u202fworking days in advance.",
-      "agent": "Hi! You need to request leave at least **3\u202fworking days** in advance. Let me know if you\u2019d like more details from our HR policies.",
+      "agent": "You need to request leave at least\u202f3\u202fworking days in advance.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -30,7 +30,7 @@
     {
       "question": "How many unused leave days can I carry over to next year?",
       "pipeline": "You can carry over up to\u202f5\u202funused leave days to the next year.",
-      "agent": "Hi! You can carry over up to **5 unused leave days** to the next year. Let me know if you need anything else from the company documents!",
+      "agent": "You can carry over up to\u202f5\u202funused leave days to the next year.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -38,7 +38,7 @@
     {
       "question": "How many days per week can I work remotely?",
       "pipeline": "You can work remotely up to\u202f2\u202fdays per week.",
-      "agent": "You can work remotely up to\u202f2\u202fdays per week, with manager approval. Let me know if you need details from any other company documents!",
+      "agent": "You can work remotely up to\u202f2\u202fdays per week.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -46,7 +46,7 @@
     {
       "question": "What are the core working hours?",
       "pipeline": "The core working hours are 10\u202fAM to 4\u202fPM.",
-      "agent": "The core working hours are\u202f10\u202fAM\u202fto\u202f4\u202fPM, and you should be reachable during that time. Let me know if you need anything else from the company documents!",
+      "agent": "Core working hours are 10\u202fAM to 4\u202fPM, and employees must be reachable during this time.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -54,7 +54,7 @@
     {
       "question": "How many days of paid sick leave do I get per year?",
       "pipeline": "You get 7 days of paid sick leave per year.",
-      "agent": "Employees receive **7 days of paid sick leave per year**. Let me know if you need details on how to request it or any other policy information!",
+      "agent": "You get 7 days of paid sick leave per year. Let me know if you have any other questions about the company documents.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -62,7 +62,7 @@
     {
       "question": "When do I need a medical certificate?",
       "pipeline": "You need a medical certificate for any sick\u2011leave absence that lasts more than\u202f2\u202fconsecutive days.",
-      "agent": "Hi! I\u2019m happy to help\u2014just let me know if you have any other questions about our company documents.  \n\nYou need a medical certificate when you\u2019re absent for more than\u202f2\u202fconsecutive days.",
+      "agent": "You need a medical certificate if you are absent for more than\u202f2\u202fconsecutive days due to illness. Let me know if you have any other questions about the company policies!",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -70,7 +70,7 @@
     {
       "question": "Within how many days must expense claims be submitted?",
       "pipeline": "Within 30 days.",
-      "agent": "Expense claims must be submitted within\u202f30\u202fdays with the original receipts. Let me know if you need help with any other company policies!",
+      "agent": "Expense claims must be submitted within\u202f30\u202fdays with the original receipts. Let me know if you need help with any other company document information.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -78,7 +78,7 @@
     {
       "question": "Which expense claims need director approval?",
       "pipeline": "Expense claims exceeding\u202f50,000\u202fLKR require director approval.",
-      "agent": "Expense claims that exceed\u202f50,000\u202fLKR require director approval. Let me know if you need details on the submission process or any other policy!",
+      "agent": "Expense claims that exceed\u202f50,000\u202fLKR require director approval.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -86,7 +86,7 @@
     {
       "question": "What is the minimum password length?",
       "pipeline": "The minimum password length is 12 characters.",
-      "agent": "Hi! The minimum password length is **12 characters**. Let me know if you need help with any other company documents.",
+      "agent": "The minimum password length is 12 characters. I can also help with other questions about company documents.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -94,7 +94,7 @@
     {
       "question": "How often must I change my password?",
       "pipeline": "You must change your password every\u202f90\u202fdays.",
-      "agent": "You should change your password every\u202f90\u202fdays. Let me know if you need help with any other policy details!",
+      "agent": "You must change your password every\u202f90\u202fdays. Let me know if you have any other questions about company policies.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -102,7 +102,7 @@
     {
       "question": "When must I connect to the VPN?",
       "pipeline": "When you\u2019re accessing internal systems from outside the office, you must connect to the company VPN.",
-      "agent": "You need to use the VPN whenever you\u2019re accessing internal systems from outside the office. Let me know if you have any other questions about company policies\u2014I\u2019m happy to help!",
+      "agent": "You need to connect to the company VPN whenever you\u2019re accessing internal systems from outside the office. If you have any other questions about company policies, just let me know!",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -110,15 +110,15 @@
     {
       "question": "Within how long must a lost laptop be reported?",
       "pipeline": "Within 24\u202fhours.",
-      "agent": "A lost or stolen laptop should be reported to the IT helpdesk within\u202f24\u202fhours. If you have any other questions about company policies, just let me know\u2014I\u2019m happy to help!",
+      "agent": "A lost laptop must be reported to the IT helpdesk within\u202f24\u202fhours.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
     },
     {
       "question": "Who do I report a lost laptop to?",
-      "pipeline": "Report it to the IT helpdesk.",
-      "agent": "You should report a lost or stolen laptop to the IT\u202fHelpdesk within\u202f24\u202fhours. If you need more details from our policies, just let me know\u2014I\u2019m happy to help with any company documents!",
+      "pipeline": "You should report it to the IT helpdesk.",
+      "agent": "You should report a lost laptop to the IT helpdesk.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -126,7 +126,7 @@
     {
       "question": "What do I need to attach to an expense claim?",
       "pipeline": "You need to attach the original receipts.",
-      "agent": "You need to attach the original receipts for the expenses (and, for claims over\u202f50,000\u202fLKR, the director\u2019s approval). Let me know if you need help with any other company documents!",
+      "agent": "You need to attach the original receipts for all work\u2011related expenses, and if the claim exceeds\u202f50,000\u202fLKR you must also include director approval.",
       "rank": 1,
       "pipeline_correct": true,
       "agent_correct": true
@@ -134,35 +134,35 @@
     {
       "question": "What is the capital of France?",
       "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. I can help answer questions about TechNova\u2019s policies, benefits, leave procedures, and other company documents.",
+      "agent": "I don't know based on the available documents. Let me know if you have any other questions about TechNova\u2019s company documents.",
       "pipeline_refused": true,
       "agent_refused": true
     },
     {
       "question": "Who is the CEO of TechNova?",
       "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. I can help you find information on company policies, onboarding, or expense procedures.",
+      "agent": "I don't know based on the available documents. If you have any other questions about TechNova\u2019s policies or documents, I\u2019m happy to help.",
       "pipeline_refused": true,
       "agent_refused": true
     },
     {
       "question": "What is the monthly salary of a software engineer?",
       "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. I can help you find information on benefits, allowances, or other company policies.",
+      "agent": "I don't know based on the available documents. Let me know if you have any other questions about the company documents.",
       "pipeline_refused": true,
       "agent_refused": true
     },
     {
       "question": "What is the office dress code?",
       "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. I can help you find information on other company policies or benefits if you\u2019d like.",
+      "agent": "I don't know based on the available documents. Let me know if you have any other questions about the company documents!",
       "pipeline_refused": true,
       "agent_refused": true
     },
     {
       "question": "What time does the cafeteria open?",
       "pipeline": "I don't know based on the available documents.",
-      "agent": "I don't know based on the available documents. I can help you find information on company policies, benefits, or other internal guidelines.",
+      "agent": "I don't know based on the available documents. If you have any other questions about the company documents, feel free to ask!",
       "pipeline_refused": true,
       "agent_refused": true
     }
