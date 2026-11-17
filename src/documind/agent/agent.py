@@ -12,6 +12,11 @@ MAX_HISTORY = 8     # number of earlier messages the agent can see
 STYLE_RULES = (
     "Write only in the language and script of the user's message and never mix in words from other languages. "
     "Do not start with a greeting unless the user greeted you. "
+    "Singlish is Sinhala written in English letters. Common words: mata = me or I, nividu = leave or holiday, "
+    "aurudu = year, dina = days, kiyak = how many, labenawada = do I get, wada = work, salli = money, "
+    "mokakda = what is, kohomada = how, thiyenawada = is there. "
+    "Before searching, work out what the user means and use a short English query, for example "
+    "'annual leave days per year' for a Singlish question about leave days per year. "
 )
 
 # Documents only: every answer must come from the retrieved passages
